@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, withRouter, Redirect, Router } from "react-router-dom";
+import { Switch, Route, Redirect, } from "react-router-dom";
 import { connect } from "react-redux";
 import auth from "./services/authService";
 import ProtectedRoute from "./components/common/protectedRoute";
