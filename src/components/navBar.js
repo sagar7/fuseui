@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-
-import { Link, NavLink, BrowserRouter } from "react-router-dom";
+import compose from "compose";
+import { Link, NavLink, BrowserRouter, withRouter } from "react-router-dom";
 
 const NavBar = ({ currentUser: user }) => {
   if (user) {
@@ -15,9 +15,9 @@ const NavBar = ({ currentUser: user }) => {
   return (
     <nav className="navbar navbar-expand-lg  navbar-dark bg-primary">
       <BrowserRouter>
-        <Link className="navbar-brand" to="/">
+        <a className="navbar-brand" exact={true} href="/">
           Users UI
-        </Link>
+        </a>
         <button
           className="navbar-toggler"
           type="button"
@@ -33,12 +33,12 @@ const NavBar = ({ currentUser: user }) => {
           <div className="navbar-nav" style={{ cursor: "pointer" }}>
             {user && (
               <React.Fragment>
-                <NavLink className="nav-item nav-link" to={`/user/${user._id}`}>
+                <a className="nav-item nav-link" href={`/user/${user._id}`}>
                   {"Edit Profile Mr." + user.name}
-                </NavLink>
-                <NavLink className="nav-item nav-link" to="/logout">
+                </a>
+                <a className="nav-item nav-link" href="/logout">
                   Logout
-                </NavLink>
+                </a>
               </React.Fragment>
             )}
           </div>
@@ -51,4 +51,4 @@ const NavBar = ({ currentUser: user }) => {
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser
 });
-export default connect(mapStateToProps)(NavBar);
+export default compose(withRouter, connect(mapStateToProps))(NavBar);

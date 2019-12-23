@@ -29,7 +29,7 @@ class App extends Component {
               <Route exact path="/login" component={LoginForm} />
               <ProtectedRoute path="/user/:id" component={AddUser} />
               <ProtectedRoute exact path="/" component={User} />
-              <Route exact path="/logout" component={Logout} />
+              <ProtectedRoute exact path="/logout" component={Logout} />
               <Route path="/not-found" component={NotFound} />
               <Redirect to="/not-found" />
             </Switch>
